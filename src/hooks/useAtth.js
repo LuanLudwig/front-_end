@@ -1,81 +1,74 @@
-import api from '../utils/api';
-
-import { useState, useEffect } from 'react';
-import { useNavigate  } from 'react-router-dom';
-import useFlashMessage from './useFlashMessage';
+import api from "../utils/api";
+import { useState, useEffect } from "react";
+import useFlashMessage from "./useFlashMessage";
 
 export default function useAuth() {
-    const [ authenticated, setAuthenticated ] = useState(false);
-    const [loading, setLoading ] = useState(true);
-    const navigate = useNavigate()
-    const { setFlashMessage } = useFlashMessage();
+  const [authenticated, setAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const { setFlashMessage } = useFlashMessage();
 
-    useEffect(() => {
-        const token = localStorage.getItem('token')
+  useEffect(() => {
+    const token = localStorage.getItem("token");
 
-        if(token) {
-            api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`
-            setAuthenticated(true); 
-        }
-
-        setLoading(false)
-    }, []);
-
-    async function register(user) {
-        let msgText = 'Cadastro realizado com sucesso!';
-        let msgType = 'success';
-
-        try {
-            const data = await api.post('/users/register', user).then((response) => {
-                return response.data
-            })
-
-            await authUser(data)
-        } catch (error) {
-            msgText = error.response.data.setFlashMessage
-            msgType = 'error'
-        }
-
-        setFlashMessage(msgText, msgType)
+    if (token) {
+      api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
+      setAuthenticated(true);
     }
 
+    setLoading(false);
+  }, []);
 
-    async function login(user) {
-        let msgText = 'Login realizado com sucesso';
-        let msgType = 'success';
+  async function register(user) {
+    let msgText = "Cadastro realizado com sucesso!";
+    let msgType = "success";
 
-        try {
-            const data = await api.post('/users/login', user).then((response) => {
-                return response.data;
-            })
+    try {
+      const data = await api.post("/users/register", user).then((response) => {
+        return response.data;
+      });
 
-            await authUser(data)
-        } catch (error) {
-            msgText = error.response.data.setFlashMessage
-            msgType = 'error'
-        }
-
-        setFlashMessage(msgText, msgType)
+      await authUser(data);
+    } catch (error) {
+      msgText = error.response.data.setFlashMessage;
+      msgType = "error";
     }
 
-    async function authUser(data) {
-        setAuthenticated(true)
-        localStorage.setItem('token', JSON.stringify(data.token))
+    setFlashMessage(msgText, msgType);
+  }
 
-        navigate('/')
+  async function login(user) {
+    let msgText = "Login realizado com sucesso";
+    let msgType = "success";
+
+    try {
+      const data = await api.post("/users/login", user).then((response) => {
+        return response.data;
+      });
+
+      await authUser(data);
+    } catch (error) {
+      msgText = error.response.data.setFlashMessage;
+      msgType = "error";
     }
 
-    function logout() {
-        const msgText = 'Logout realizado com sucesso!';
-        const msgType = 'success';
+    setFlashMessage(msgText, msgType);
+  }
 
-        setAuthenticated(false)
-        localStorage.removeItem('token');
-        api.defaults.headers.Authorization = undefined
-        navigate('/login')
+  async function authUser(data) {
+    setAuthenticated(true);
+    localStorage.setItem("token", JSON.stringify(data.token));
+  }
 
-        setFlashMessage(msgText, msgType);
-    }
+  function logout() {
+    const msgText = "Logout realizado com sucesso!";
+    const msgType = "success";
 
-    return { authenticated, loading, register, login, logout }
+    setAuthenticated(false);
+    localStorage.removeItem("token");
+    api.defaults.headers.Authorization = undefined;
+
+    setFlashMessage(msgText, msgType);
+  }
+
+  return { authenticated, loading, register, login, logout };
 }
