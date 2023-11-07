@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { Route, Routes } from "react-router-dom/dist";
-import Login from "../components/pages/auth/Login";
-import Register from "../components/pages/auth/Register";
+import Login from "../pages/Unhantenticated/Login/Login";
+import Register from "../pages/Unhantenticated/Register/Register";
 
 export const UnhatenticatedRoutes = () => {
   return (

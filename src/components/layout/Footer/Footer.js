@@ -1,13 +1,11 @@
-import styles from './Footer.module.css';
+import styles from "./Footer.module.css";
 
 function Footer() {
-    return (
-        <footer className={styles.footer}>
-            <p>
-                <span className='bold'>SMS School</span> &copy; 2023
-            </p>
-        </footer>
-    )
+  return (
+    <footer className={styles.footer}>
+      <p className="bold">SMS School</p> &copy; 2023
+    </footer>
+  );
 }
 
-export default Footer
+export default Footer;

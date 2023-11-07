@@ -1,7 +1,10 @@
-.container{
-    min-height: 70vh;
-    background-color: #ffebee;
-    padding: 1em 2em 3em;
-    max-width: 1200px;
-    margin: 0 auto;
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffebee;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

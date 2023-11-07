@@ -17,8 +17,8 @@ function App() {
       <Container>
         {true ? (
           <>
-            <Navbar />
             <Message />
+            <Navbar />
             <AuthenticatedRoutes />
             <Footer />
           </>
