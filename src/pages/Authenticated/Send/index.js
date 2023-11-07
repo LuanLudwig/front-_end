@@ -15,9 +15,9 @@ export function Send() {
           <input type="text" placeholder="(99) 9999999" />
         </div>
 
-        <div>
-          <label>Mensage</label>
-          <textarea></textarea>
+        <div className={styles.formGroup}>
+          <label>Mensagem</label>
+          <textarea placeholder="Digite sua mensagem aqui..."></textarea>
         </div>
 
         <button type="submit">Enviar</button>

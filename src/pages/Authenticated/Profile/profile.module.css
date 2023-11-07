@@ -1,0 +1,68 @@
+.container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 56px;
+
+  padding: 16px;
+}
+
+.container main {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.container main .item h2 {
+  font-size: 1em;
+  color: #444;
+}
+
+.container main .item p {
+  font-size: 1.8em;
+  font-weight: 500;
+  color: #222;
+}
+
+.container footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.container footer .btn {
+  background: #004cda;
+  outline: none;
+  color: #fff;
+  font-size: 1.2em;
+  font-weight: 600;
+  border: 0;
+  border-radius: 4px;
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.container footer .btn:hover {
+  background: #2773ff;
+}
+
+.container footer .btnLogout {
+  background-color: transparent;
+  outline: none;
+  color: #dc3545;
+  font-size: 1em;
+  font-weight: 600;
+  border: 0;
+  border-radius: 4px;
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.container footer .btnLogout:hover {
+  background: #dc3545;
+  color: #fff;
+}
